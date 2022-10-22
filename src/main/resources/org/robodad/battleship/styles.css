@@ -1,3 +1,10 @@
+.root{
+    -fx-font-size: 16pt;
+    -fx-font-family: "Consolas";
+    -fx-base: rgb(85, 190, 195);
+    -fx-background: rgb(20, 20, 20);
+}
+
 .button {
-    -fx-text-fill: blue;
+    -fx-text-fill: white;
 }
