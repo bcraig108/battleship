@@ -1,8 +1,12 @@
 package org.robodad.battleship;
 
+import java.io.InputStream;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 public class GamePane extends GridPane {
@@ -37,5 +41,8 @@ public class GamePane extends GridPane {
                 this.add(btn,col,row);
             }
         }
+    }
+
+    public void displayShips() {
     }
 }
