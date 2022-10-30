@@ -1,12 +1,11 @@
 package org.robodad.battleship;
 
-import java.io.InputStream;
-
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 
 public class GamePane extends GridPane {
@@ -33,14 +32,30 @@ public class GamePane extends GridPane {
                 colLabel.setMinHeight(SIZE);
                 this.add(colLabel,col,0);
 
-                Button btn = new Button();
-                btn.setText("O");
-                btn.setAlignment(Pos.CENTER);
-                btn.setMinWidth(SIZE);
-                btn.setMinHeight(SIZE);
+                GameButton btn = new GameButton();
                 this.add(btn,col,row);
             }
         }
+
+        Label fleetLabel = new Label();
+        fleetLabel.setText("FLEET");
+        fleetLabel.setAlignment(Pos.CENTER);
+        this.add(fleetLabel,2,13,5,1);
+
+        CarrierImageView carrier = new CarrierImageView();
+        this.add(carrier, 2, 14, 5, 1);
+
+        BattleshipImageView battleship = new BattleshipImageView();
+        this.add(battleship, 2, 15, 4, 1);
+
+        DestroyerImageView detroyer = new DestroyerImageView();
+        this.add(detroyer, 2, 16, 3, 1);
+
+        SubmarineImageView submarine = new SubmarineImageView();
+        this.add(submarine, 2, 17, 3, 1);
+
+        PatrolImageView patrol = new PatrolImageView();
+        this.add(patrol, 2, 18, 2, 1);
     }
 
     public void displayShips() {
