@@ -1,4 +1,4 @@
-package org.robodad.battleship;
+package org.robodad.battleship.view;
 
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;

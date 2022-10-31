@@ -1,4 +1,4 @@
-package org.robodad.battleship;
+package org.robodad.battleship.view;
 
 public class CarrierImageView extends ShipImageView {
     
