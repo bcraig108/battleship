@@ -1,5 +1,7 @@
 package org.robodad.battleship.view;
 
+import org.robodad.battleship.Constants;
+
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,16 +13,14 @@ import javafx.scene.input.TransferMode;
 
 public class ShipImageView extends ImageView {
 
-    private static final double SIZE = 50;
-
     public ShipImageView(int cells, String file) {
 
         Image image = new Image(getClass().getResourceAsStream(file));
 
         //Setting image to the image view
         this.setImage(image);
-        this.setFitHeight(SIZE);
-        this.setFitWidth(SIZE * cells);
+        this.setFitHeight(Constants.SIZE);
+        this.setFitWidth(Constants.SIZE * cells);
 
         ImageView view = this;
 

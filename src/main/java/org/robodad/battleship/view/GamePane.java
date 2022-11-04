@@ -1,42 +1,47 @@
 package org.robodad.battleship.view;
 
+import org.robodad.battleship.Constants;
+
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 
 public class GamePane extends GridPane {
 
-    private static final double SIZE = 50;
-
     public GamePane() {
         
-        for (int row = 1; row <= 10; row++) {
+        for (int row = 1; row <= Constants.NUM_ROWS; row++) {
 
             Label rowLabel = new Label();
             rowLabel.setText(String.valueOf((char)(row + 64)));
             rowLabel.setAlignment(Pos.CENTER);
-            rowLabel.setMinWidth(SIZE);
-            rowLabel.setMinHeight(SIZE);
+            rowLabel.setMinWidth(Constants.SIZE);
+            rowLabel.setMinHeight(Constants.SIZE);
             this.add(rowLabel,0,row);
 
-            for (int col = 1; col <= 10; col++) {
+            for (int col = 1; col <= Constants.NUM_COLS; col++) {
             
                 Label colLabel = new Label();
                 colLabel.setText(Integer.toString(col));
                 colLabel.setAlignment(Pos.CENTER);
-                colLabel.setMinWidth(SIZE);
-                colLabel.setMinHeight(SIZE);
+                colLabel.setMinWidth(Constants.SIZE);
+                colLabel.setMinHeight(Constants.SIZE);
                 this.add(colLabel,col,0);
 
-                GameButton btn = new GameButton();
-                this.add(btn,col,row);
+                // GameButton btn = new GameButton();
+                // this.add(btn,col,row);
             }
         }
 
+        GameBoard board = new GameBoard();
+        this.add(board,1,1,10,10);
+        
         Label fleetLabel = new Label();
         fleetLabel.setText("FLEET");
         fleetLabel.setAlignment(Pos.CENTER);
@@ -56,8 +61,5 @@ public class GamePane extends GridPane {
 
         PatrolImageView patrol = new PatrolImageView();
         this.add(patrol, 2, 18, 2, 1);
-    }
-
-    public void displayShips() {
     }
 }

@@ -1,5 +1,7 @@
 package org.robodad.battleship.view;
 
+import org.robodad.battleship.Constants;
+
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -10,13 +12,11 @@ import javafx.scene.paint.Color;
 
 public class GameButton extends Button {
 
-    private static final double SIZE = 50;
-
     public GameButton() {
         this.setText("O");
         this.setAlignment(Pos.CENTER);
-        this.setMinWidth(SIZE);
-        this.setMinHeight(SIZE);
+        this.setMinWidth(Constants.SIZE);
+        this.setMinHeight(Constants.SIZE);
 
         Button button = this;
 
