@@ -53,8 +53,5 @@ public class GamePane extends GridPane {
 
         PatrolImageView patrol = new PatrolImageView();
         this.add(patrol, 2, 18, 2, 1);
-
-        // this.getStyleClass().add("game-grid");
-        // this.getStyleClass().add("game-grid-cell");
     }
 }

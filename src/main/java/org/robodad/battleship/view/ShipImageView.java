@@ -1,26 +1,20 @@
 package org.robodad.battleship.view;
 
-import java.io.Serializable;
+import java.lang.invoke.ConstantCallSite;
 
 import org.robodad.battleship.Constants;
+import org.robodad.battleship.events.DragDetectedEventHandler;
+import org.robodad.battleship.events.DragDoneEventHandler;
+import org.robodad.battleship.events.MouseClickedEventHandler;
 
-import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
 
 public class ShipImageView extends ImageView {
 
-    public enum Orientation { NORTH, EAST };
-
     private Orientation orientation;
     private int cells;
-    private String file;
 
     /**
      * ShipImageView constructor
@@ -30,62 +24,19 @@ public class ShipImageView extends ImageView {
     public ShipImageView(int cells, String file) {
 
         this.cells = cells;
-        this.orientation = Orientation.EAST;
-        this.file = file;
+        this.orientation = Orientation.HORIZONTAL;
 
         Image image = new Image(getClass().getResourceAsStream(file));
 
-        //Setting image to the image view
+        // setting image to the image view
         this.setImage(image);
         this.setFitHeight(Constants.SIZE);
         this.setFitWidth(Constants.SIZE * cells);
 
-        ShipImageView view = this;
-
-        this.setOnDragDetected(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                /* drag was detected, start a drag-and-drop gesture*/
-                /* allow any transfer mode */
-                Dragboard db = view.startDragAndDrop(TransferMode.COPY);
-                
-                /* Put a string on a dragboard */
-                ClipboardContent content = new ClipboardContent();
-                content.putImage(view.getImage());
-                db.setContent(content);
-                
-                event.consume();
-                System.out.println("ShipImageView.DragDetected.handle()");
-            }
-        });
-
-        this.setOnDragDone(new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                /* the drag and drop gesture ended */
-                /* if the data was successfully moved, clear it */
-                if (event.getTransferMode() == TransferMode.MOVE) {
-                    view.setImage(null);
-                }
-                event.consume();
-                System.out.println("ShipImageView.DragDone.handle()");
-            }
-        });
-
-        this.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-                if (event.getButton() == MouseButton.SECONDARY) {
-                    if (view.getOrientation() == Orientation.EAST) {
-                        view.setRotate(90.0);
-                        view.setOrientation(Orientation.NORTH);
-                    }
-                    else {
-                        view.setRotate(0.0);
-                        view.setOrientation(Orientation.EAST);
-                    }
-                }
-                event.consume();
-                System.out.println("ShipImageView.MouseEvent.handle()");
-            }
-        });
+        // setup event handlers
+        this.setOnDragDetected(new DragDetectedEventHandler(this));
+        this.setOnDragDone(new DragDoneEventHandler(this));
+        this.setOnMouseClicked(new MouseClickedEventHandler(this));
     }
 
     /**
@@ -98,6 +49,30 @@ public class ShipImageView extends ImageView {
 
     public Orientation getOrientation() {
         return orientation;
+    }
+
+    public int getRowStart(int row) {
+        return Math.max(Math.min(row, Constants.NUM_ROWS - getRows() + 1), 1);
+    }
+
+    public int getColStart(int col) {
+        return Math.max(Math.min(col, Constants.NUM_COLS - getCols() + 1), 1);
+    }
+
+    public int getRows() {
+        if (orientation == Orientation.HORIZONTAL) {
+            return 1;
+        } else {
+            return cells;
+        }
+    }
+
+    public int getCols() {
+        if (orientation == Orientation.HORIZONTAL) {
+            return cells;
+        } else {
+            return 1;
+        }
     }
 
     public void setOrientation(Orientation orientation) {

@@ -8,3 +8,13 @@
 .button {
     -fx-text-fill: white;
 }
+
+.game-grid {
+    -fx-background-color: white ;
+    -fx-padding: 10 ;
+}
+
+.game-grid-cell {
+    -fx-background-color: black, white ;
+    -fx-background-insets: 0, 0 1 1 0 ;
+}
