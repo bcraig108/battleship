@@ -29,6 +29,5 @@ public class DragEnteredEventHandler implements EventHandler<DragEvent> {
         }
                        
          event.consume();
-         System.out.println("DragEnteredEventHandler.handle()");
     }
 }

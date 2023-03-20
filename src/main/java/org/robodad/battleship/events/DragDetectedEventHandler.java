@@ -27,7 +27,6 @@ public class DragDetectedEventHandler implements EventHandler<MouseEvent> {
         db.setContent(content);
         
         event.consume();
-        System.out.println("DragDetectedEventHandler.handle()");
     }
 }
 

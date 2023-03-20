@@ -21,6 +21,5 @@ public class DragDoneEventHandler implements EventHandler<DragEvent> {
             view.setImage(null);
         }
         event.consume();
-        System.out.println("DragDoneEventHandler.handle()");
     }
 }

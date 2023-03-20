@@ -33,25 +33,5 @@ public class GamePane extends GridPane {
                 this.add(rectangle,col,row,1,1);        
             }
         }
-
-        Label fleetLabel = new Label();
-        fleetLabel.setText("FLEET");
-        fleetLabel.setAlignment(Pos.CENTER);
-        this.add(fleetLabel,2,13,5,1);
-
-        CarrierImageView carrier = new CarrierImageView();
-        this.add(carrier, 2, 14, 5, 1);
-
-        BattleshipImageView battleship = new BattleshipImageView();
-        this.add(battleship, 2, 15, 4, 1);
-
-        DestroyerImageView detroyer = new DestroyerImageView();
-        this.add(detroyer, 2, 16, 3, 1);
-
-        SubmarineImageView submarine = new SubmarineImageView();
-        this.add(submarine, 2, 17, 3, 1);
-
-        PatrolImageView patrol = new PatrolImageView();
-        this.add(patrol, 2, 18, 2, 1);
     }
 }

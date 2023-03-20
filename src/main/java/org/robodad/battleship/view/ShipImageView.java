@@ -139,6 +139,9 @@ public class ShipImageView extends ImageView {
         }
 
         // update the position based on where the mouse was clicked
+        setRowStart(rowStart);
+        setColStart(colStart);
+    
         update(pane);
     }
 }

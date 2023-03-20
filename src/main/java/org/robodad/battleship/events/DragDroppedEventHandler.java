@@ -31,9 +31,7 @@ public class DragDroppedEventHandler implements EventHandler<DragEvent> {
             success = true;
         }
 
-        event.setDropCompleted(success);
-        System.out.println("DragDroppedEventHandler.handle()");
-        
+        event.setDropCompleted(success);        
         event.consume();
      }
 }

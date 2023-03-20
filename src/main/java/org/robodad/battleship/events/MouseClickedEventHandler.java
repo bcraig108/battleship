@@ -19,6 +19,5 @@ public class MouseClickedEventHandler implements EventHandler<MouseEvent> {
             view.HandleMouseButtonSecondary(event.getSceneX(), event.getSceneY());
         }
         event.consume();
-        System.out.println("MouseClickedEventHandler.handle()");
     }
 }
