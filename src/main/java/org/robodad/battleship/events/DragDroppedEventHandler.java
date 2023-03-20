@@ -23,13 +23,11 @@ public class DragDroppedEventHandler implements EventHandler<DragEvent> {
 
         if (event.getGestureSource() instanceof ShipImageView) {
             ShipImageView ship = (ShipImageView)event.getGestureSource();
-            
-            pane.add(
-                ship, 
-                ship.getColStart(rectangle.getCol()), 
-                ship.getRowStart(rectangle.getRow()), 
-                ship.getCols(), 
-                ship.getRows());
+
+            ship.setColStart(rectangle.getCol());
+            ship.setRowStart(rectangle.getRow());
+            ship.update(pane);
+
             success = true;
         }
 

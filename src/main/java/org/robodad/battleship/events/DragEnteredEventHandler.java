@@ -9,11 +9,11 @@ import javafx.scene.input.DragEvent;
 
 public class DragEnteredEventHandler implements EventHandler<DragEvent> {
     
-    GamePane parent;
+    GamePane pane;
     GameGridRectangle rectangle;
 
-    public DragEnteredEventHandler(GamePane parent, GameGridRectangle rectangle) {
-        this.parent = parent;
+    public DragEnteredEventHandler(GamePane pane, GameGridRectangle rectangle) {
+        this.pane = pane;
         this.rectangle = rectangle;
     }
 
@@ -23,12 +23,9 @@ public class DragEnteredEventHandler implements EventHandler<DragEvent> {
         if (event.getGestureSource() instanceof ShipImageView) {
             ShipImageView ship = (ShipImageView)event.getGestureSource();
             
-            parent.add(
-                ship, 
-                ship.getColStart(rectangle.getCol()), 
-                ship.getRowStart(rectangle.getRow()), 
-                ship.getCols(), 
-                ship.getRows());
+            ship.setColStart(rectangle.getCol());
+            ship.setRowStart(rectangle.getRow());
+            ship.update(pane);
         }
                        
          event.consume();

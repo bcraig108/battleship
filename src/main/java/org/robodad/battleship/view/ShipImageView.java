@@ -1,7 +1,5 @@
 package org.robodad.battleship.view;
 
-import java.lang.invoke.ConstantCallSite;
-
 import org.robodad.battleship.Constants;
 import org.robodad.battleship.events.DragDetectedEventHandler;
 import org.robodad.battleship.events.DragDoneEventHandler;
@@ -13,23 +11,40 @@ import javafx.scene.image.ImageView;
 
 public class ShipImageView extends ImageView {
 
-    private Orientation orientation;
     private int cells;
+    private Orientation orientation;
+    private Image horizImage;
+    private Image vertImage;
+    private int rowStart = -1;
+    private int colStart = -1;
+    private GamePane pane = null;
 
     /**
      * ShipImageView constructor
      * @param cells
      * @param file
      */
-    public ShipImageView(int cells, String file) {
+    public ShipImageView(int cells, String HorizFile, String VertFile) {
 
         this.cells = cells;
         this.orientation = Orientation.HORIZONTAL;
 
-        Image image = new Image(getClass().getResourceAsStream(file));
+        this.horizImage = new Image(
+            getClass().getResourceAsStream(HorizFile),
+            cells * Constants.SIZE,
+            Constants.SIZE,
+            false,
+            false);
 
+        this.vertImage = new Image(
+            getClass().getResourceAsStream(VertFile),
+            cells * Constants.SIZE,
+            Constants.SIZE,
+            false,
+            false);
+        
         // setting image to the image view
-        this.setImage(image);
+        this.setImage(this.horizImage);
         this.setFitHeight(Constants.SIZE);
         this.setFitWidth(Constants.SIZE * cells);
 
@@ -51,12 +66,20 @@ public class ShipImageView extends ImageView {
         return orientation;
     }
 
-    public int getRowStart(int row) {
-        return Math.max(Math.min(row, Constants.NUM_ROWS - getRows() + 1), 1);
+    public void setRowStart(int row) {
+        rowStart = Math.max(Math.min(row, Constants.NUM_ROWS - getRows() + 1), 1); 
     }
 
-    public int getColStart(int col) {
-        return Math.max(Math.min(col, Constants.NUM_COLS - getCols() + 1), 1);
+    public int getRowStart() {
+        return rowStart;
+    }
+
+    public void setColStart(int col) {
+        colStart = Math.max(Math.min(col, Constants.NUM_COLS - getCols() + 1), 1);
+    }
+
+    public int getColStart() {
+        return colStart;
     }
 
     public int getRows() {
@@ -77,5 +100,45 @@ public class ShipImageView extends ImageView {
 
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
+    }
+
+    public void setGamePane(GamePane pane) {
+        System.out.println("setGamePane() " + pane);
+        this.pane = pane;
+    }
+
+    public GamePane getGamePane() {
+        return pane;
+    }
+
+    public void update(GamePane pane) {
+        pane.getChildren().remove(this);
+        pane.add(
+            this, 
+            colStart, 
+            rowStart, 
+            getCols(), 
+            getRows());
+
+        setGamePane(pane);
+    }
+
+    public void HandleMouseButtonSecondary(double sceneX, double sceneY) {
+
+        if (orientation == Orientation.HORIZONTAL) {
+            orientation = Orientation.VERTICAL;
+            setImage(this.vertImage);
+            setFitHeight(Constants.SIZE * cells);
+            setFitWidth(Constants.SIZE);
+        }
+        else {
+            orientation = Orientation.HORIZONTAL;
+            setImage(this.horizImage);
+            setFitHeight(Constants.SIZE);
+            setFitWidth(Constants.SIZE * cells);
+        }
+
+        // update the position based on where the mouse was clicked
+        update(pane);
     }
 }
