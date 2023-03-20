@@ -6,9 +6,9 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
-public class GamePane extends GridPane {
+public class OceanPane extends GridPane {
 
-    public GamePane() {
+    public OceanPane() {
         
         for (int row = 1; row <= Constants.NUM_ROWS; row++) {
 
@@ -28,7 +28,7 @@ public class GamePane extends GridPane {
                 colLabel.setMinHeight(Constants.SIZE);
                 this.add(colLabel,col,0);
                     
-                GameGridRectangle rectangle = new GameGridRectangle(row, col, this);
+                OceanGridRectangle rectangle = new OceanGridRectangle(row, col, this);
     
                 this.add(rectangle,col,row,1,1);        
             }

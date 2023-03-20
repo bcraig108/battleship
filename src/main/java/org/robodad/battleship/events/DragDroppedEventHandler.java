@@ -1,7 +1,7 @@
 package org.robodad.battleship.events;
 
-import org.robodad.battleship.view.GameGridRectangle;
-import org.robodad.battleship.view.GamePane;
+import org.robodad.battleship.view.OceanGridRectangle;
+import org.robodad.battleship.view.OceanPane;
 import org.robodad.battleship.view.ShipImageView;
 
 import javafx.event.EventHandler;
@@ -10,10 +10,10 @@ import javafx.scene.input.DragEvent;
 
 public class DragDroppedEventHandler implements EventHandler<DragEvent> {
 
-    GamePane pane;
-    GameGridRectangle rectangle;
+    OceanPane pane;
+    OceanGridRectangle rectangle;
 
-    public DragDroppedEventHandler(GamePane pane, GameGridRectangle rectangle) {
+    public DragDroppedEventHandler(OceanPane pane, OceanGridRectangle rectangle) {
         this.pane = pane;
         this.rectangle = rectangle;
     }

@@ -17,7 +17,7 @@ public class ShipImageView extends ImageView {
     private Image vertImage;
     private int rowStart = -1;
     private int colStart = -1;
-    private GamePane pane = null;
+    private OceanPane pane = null;
 
     /**
      * ShipImageView constructor
@@ -102,16 +102,15 @@ public class ShipImageView extends ImageView {
         this.orientation = orientation;
     }
 
-    public void setGamePane(GamePane pane) {
-        System.out.println("setGamePane() " + pane);
+    public void setGamePane(OceanPane pane) {
         this.pane = pane;
     }
 
-    public GamePane getGamePane() {
+    public OceanPane getGamePane() {
         return pane;
     }
 
-    public void update(GamePane pane) {
+    public void update(OceanPane pane) {
         pane.getChildren().remove(this);
         pane.add(
             this, 

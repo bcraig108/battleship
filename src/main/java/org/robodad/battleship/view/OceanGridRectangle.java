@@ -7,12 +7,12 @@ import org.robodad.battleship.events.DragEnteredEventHandler;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class GameGridRectangle extends Rectangle {
+public class OceanGridRectangle extends Rectangle {
     
     private int row;
     private int col;
 
-    public GameGridRectangle(int row, int col, GamePane parent) {
+    public OceanGridRectangle(int row, int col, OceanPane parent) {
         super(Constants.SIZE, Constants.SIZE);
 
         this.row = row;

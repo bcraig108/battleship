@@ -2,6 +2,7 @@ package org.robodad.battleship;
 
 import java.io.IOException;
 
+import org.robodad.battleship.view.GameBoard;
 import org.robodad.battleship.view.PlayerBoard;
 
 import javafx.application.Application;
@@ -18,7 +19,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         
-        scene = new Scene(new PlayerBoard("Player 1"));
+        scene = new Scene(new GameBoard());
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
         stage.setTitle("Battleship");
