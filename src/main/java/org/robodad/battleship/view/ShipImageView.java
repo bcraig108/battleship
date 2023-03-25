@@ -1,9 +1,9 @@
 package org.robodad.battleship.view;
 
 import org.robodad.battleship.Constants;
-import org.robodad.battleship.events.DragDetectedEventHandler;
-import org.robodad.battleship.events.DragDoneEventHandler;
-import org.robodad.battleship.events.MouseClickedEventHandler;
+import org.robodad.battleship.events.ShipImageViewDragDetectedEventHandler;
+import org.robodad.battleship.events.ShipImageViewDragDoneEventHandler;
+import org.robodad.battleship.events.ShipImageViewMouseClickedEventHandler;
 
 import javafx.geometry.Orientation;
 import javafx.scene.image.Image;
@@ -49,9 +49,9 @@ public class ShipImageView extends ImageView {
         this.setFitWidth(Constants.SIZE * cells);
 
         // setup event handlers
-        this.setOnDragDetected(new DragDetectedEventHandler(this));
-        this.setOnDragDone(new DragDoneEventHandler(this));
-        this.setOnMouseClicked(new MouseClickedEventHandler(this));
+        this.setOnDragDetected(new ShipImageViewDragDetectedEventHandler(this));
+        this.setOnDragDone(new ShipImageViewDragDoneEventHandler(this));
+        this.setOnMouseClicked(new ShipImageViewMouseClickedEventHandler(this));
     }
 
     /**

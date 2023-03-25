@@ -1,15 +1,23 @@
 package org.robodad.battleship.view;
 
+import org.robodad.battleship.model.Player;
+
 import javafx.scene.layout.HBox;
 
 public class GameBoard extends HBox {
     
-    public GameBoard() {
+    Player player1;
+    Player player2;
 
-        PlayerBoard player1 = new PlayerBoard("Player 1");
-        this.getChildren().add(player1);
+    PlayerBoard playerBoard1;
+    PlayerBoard playerBoard2;
 
-        PlayerBoard player2 = new PlayerBoard("Player 2");
-        this.getChildren().add(player2);
+    public GameBoard(Player player1, Player player2) {
+
+        playerBoard1 = new PlayerBoard(player1);
+        this.getChildren().add(playerBoard1);
+
+        playerBoard2 = new PlayerBoard(player2);
+        this.getChildren().add(playerBoard2);
     }
 }

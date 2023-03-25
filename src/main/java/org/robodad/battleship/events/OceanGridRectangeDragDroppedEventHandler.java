@@ -8,12 +8,12 @@ import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.scene.input.DragEvent;
 
-public class DragDroppedEventHandler implements EventHandler<DragEvent> {
+public class OceanGridRectangeDragDroppedEventHandler implements EventHandler<DragEvent> {
 
     OceanPane pane;
     OceanGridRectangle rectangle;
 
-    public DragDroppedEventHandler(OceanPane pane, OceanGridRectangle rectangle) {
+    public OceanGridRectangeDragDroppedEventHandler(OceanPane pane, OceanGridRectangle rectangle) {
         this.pane = pane;
         this.rectangle = rectangle;
     }

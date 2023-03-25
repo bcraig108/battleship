@@ -6,11 +6,11 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
-public class MouseClickedEventHandler implements EventHandler<MouseEvent> {
+public class ShipImageViewMouseClickedEventHandler implements EventHandler<MouseEvent> {
 
     ShipImageView view;
 
-    public MouseClickedEventHandler(ShipImageView view) {
+    public ShipImageViewMouseClickedEventHandler(ShipImageView view) {
         this.view = view;
     }
 

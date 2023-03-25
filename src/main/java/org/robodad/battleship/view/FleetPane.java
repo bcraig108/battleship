@@ -1,12 +1,18 @@
 package org.robodad.battleship.view;
 
+import org.robodad.battleship.events.ReadyButtonActionEventHandler;
+import org.robodad.battleship.model.Player;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
 public class FleetPane extends VBox {
     
-    public FleetPane() {
+    private Player player;
+
+    public FleetPane(Player player) {
+        this.player = player;
 
         setAlignment(Pos.CENTER);
 
@@ -27,6 +33,7 @@ public class FleetPane extends VBox {
 
         Button button = new Button();
         button.setText("READY!");
+        button.setOnAction(new ReadyButtonActionEventHandler(player, button));
         this.getChildren().add(button);
     }
 }

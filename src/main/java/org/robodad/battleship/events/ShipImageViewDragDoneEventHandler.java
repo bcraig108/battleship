@@ -6,11 +6,11 @@ import javafx.event.EventHandler;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 
-public class DragDoneEventHandler implements EventHandler<DragEvent> {
+public class ShipImageViewDragDoneEventHandler implements EventHandler<DragEvent> {
     
     ShipImageView view;
 
-    public DragDoneEventHandler(ShipImageView view) {
+    public ShipImageViewDragDoneEventHandler(ShipImageView view) {
         this.view = view;
     }
 

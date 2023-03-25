@@ -8,11 +8,11 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 
-public class DragDetectedEventHandler implements EventHandler<MouseEvent> {
+public class ShipImageViewDragDetectedEventHandler implements EventHandler<MouseEvent> {
 
     ShipImageView view;
 
-    public DragDetectedEventHandler(ShipImageView view) {
+    public ShipImageViewDragDetectedEventHandler(ShipImageView view) {
         this.view = view;
     }
 
