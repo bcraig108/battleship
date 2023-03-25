@@ -122,6 +122,20 @@ public class ShipImageView extends ImageView {
         setGamePane(pane);
     }
 
+    public void HandleMouseButtonPrimary(double sceneX, double sceneY) {
+
+        System.out.println("BOOM! X " + sceneX + " Y " + sceneY);
+
+        // System.out.println("BOOM! ROW " + this.rectangle.getRow() + " COL " + this.rectangle.getCol());
+
+
+        // pane.add(new ExplosionImageView(), 
+        //     this.rectangle.getCol(), 
+        //     this.rectangle.getRow(), 
+        //     1, 
+        //     1);
+    }
+
     public void HandleMouseButtonSecondary(double sceneX, double sceneY) {
 
         if (orientation == Orientation.HORIZONTAL) {

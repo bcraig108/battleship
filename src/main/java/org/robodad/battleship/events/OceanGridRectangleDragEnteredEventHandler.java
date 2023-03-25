@@ -7,12 +7,12 @@ import org.robodad.battleship.view.ShipImageView;
 import javafx.event.EventHandler;
 import javafx.scene.input.DragEvent;
 
-public class OceanGridRectangeDragEnteredEventHandler implements EventHandler<DragEvent> {
+public class OceanGridRectangleDragEnteredEventHandler implements EventHandler<DragEvent> {
     
     OceanPane pane;
     OceanGridRectangle rectangle;
 
-    public OceanGridRectangeDragEnteredEventHandler(OceanPane pane, OceanGridRectangle rectangle) {
+    public OceanGridRectangleDragEnteredEventHandler(OceanPane pane, OceanGridRectangle rectangle) {
         this.pane = pane;
         this.rectangle = rectangle;
     }

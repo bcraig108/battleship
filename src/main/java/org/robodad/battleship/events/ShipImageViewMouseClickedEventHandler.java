@@ -15,7 +15,10 @@ public class ShipImageViewMouseClickedEventHandler implements EventHandler<Mouse
     }
 
     public void handle(MouseEvent event) {
-        if (event.getButton() == MouseButton.SECONDARY) {
+        if (event.getButton() == MouseButton.PRIMARY) {
+            view.HandleMouseButtonPrimary(event.getSceneX(), event.getSceneY());
+        }
+        else if (event.getButton() == MouseButton.SECONDARY) {
             view.HandleMouseButtonSecondary(event.getSceneX(), event.getSceneY());
         }
         event.consume();

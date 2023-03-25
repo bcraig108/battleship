@@ -1,8 +1,9 @@
 package org.robodad.battleship.view;
 
 import org.robodad.battleship.Constants;
-import org.robodad.battleship.events.OceanGridRectangeDragDroppedEventHandler;
-import org.robodad.battleship.events.OceanGridRectangeDragEnteredEventHandler;
+import org.robodad.battleship.events.OceanGridRectangleDragDroppedEventHandler;
+import org.robodad.battleship.events.OceanGridRectangleDragEnteredEventHandler;
+import org.robodad.battleship.events.OceanGridRectangleMouseClickedEventHandler;
 import org.robodad.battleship.model.Player;
 
 import javafx.scene.paint.Color;
@@ -13,13 +14,16 @@ public class OceanGridRectangle extends Rectangle {
     private int row;
     private int col;
     private Player player;
+    private OceanPane pane;
+    private ExplosionImageView explosion;
 
-    public OceanGridRectangle(int row, int col, OceanPane parent, Player player) {
+    public OceanGridRectangle(int row, int col, OceanPane pane, Player player) {
         super(Constants.SIZE, Constants.SIZE);
 
         this.row = row;
         this.col = col;
         this.player = player;
+        this.pane = pane;
 
         Color color =  Color.SEAGREEN;
         if ((row % 2) == (col % 2)) {
@@ -27,8 +31,9 @@ public class OceanGridRectangle extends Rectangle {
         }
         this.setFill(color);
 
-        this.setOnDragEntered(new OceanGridRectangeDragEnteredEventHandler(parent, this));
-        this.setOnDragDropped(new OceanGridRectangeDragDroppedEventHandler(parent, this));
+        this.setOnDragEntered(new OceanGridRectangleDragEnteredEventHandler(pane, this));
+        this.setOnDragDropped(new OceanGridRectangleDragDroppedEventHandler(pane, this));
+        this.setOnMouseClicked(new OceanGridRectangleMouseClickedEventHandler(pane, this));
     }
 
     public int getRow() {
@@ -37,5 +42,12 @@ public class OceanGridRectangle extends Rectangle {
 
     public int getCol() {
         return col;
+    }
+
+    public void addExplosion() {
+        if (explosion == null) {
+            explosion = new ExplosionImageView();
+            pane.add(explosion, col, row);
+        }  
     }
 }
