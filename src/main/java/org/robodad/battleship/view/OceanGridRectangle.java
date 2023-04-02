@@ -6,6 +6,7 @@ import org.robodad.battleship.events.OceanGridRectangleDragEnteredEventHandler;
 import org.robodad.battleship.events.OceanGridRectangleMouseClickedEventHandler;
 import org.robodad.battleship.model.Player;
 
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -14,7 +15,7 @@ public class OceanGridRectangle extends Rectangle {
     private int row;
     private int col;
     private OceanPane pane;
-    private ExplosionImageView explosion;
+    private ImageView image;
 
     public OceanGridRectangle(int row, int col, OceanPane pane, Player player) {
         super(Constants.SIZE, Constants.SIZE);
@@ -43,9 +44,16 @@ public class OceanGridRectangle extends Rectangle {
     }
 
     public void addExplosion() {
-        if (explosion == null) {
-            explosion = new ExplosionImageView();
-            pane.add(explosion, col, row);
+        if (image == null) {
+            image = new ExplosionImageView();
+            pane.add(image, col, row);
+        }  
+    }
+
+    public void addPlop() {
+        if (image == null) {
+            image = new PlopImageView();
+            pane.add(image, col, row);
         }  
     }
 }

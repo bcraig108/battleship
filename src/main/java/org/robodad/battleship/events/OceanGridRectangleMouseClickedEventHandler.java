@@ -30,6 +30,7 @@ public class OceanGridRectangleMouseClickedEventHandler implements EventHandler<
             }
             else {
                 System.out.println("Miss! ROW " + this.rectangle.getRow() + " COL " + this.rectangle.getCol());
+                rectangle.addPlop();
             }
         }
         event.consume();
