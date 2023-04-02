@@ -5,6 +5,6 @@ public class BattleshipImageView extends ShipImageView {
     public  static final int CELLS = 4;
 
     public BattleshipImageView() {
-        super(CELLS,"battleship.png", "battleship_vert.png");
+        super("Battleship", CELLS,"battleship.png", "battleship_vert.png");
     }
 }

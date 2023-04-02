@@ -21,18 +21,23 @@ public class FleetPane extends VBox {
 
         CarrierImageView carrier = new CarrierImageView();
         this.getChildren().add(carrier);
+        player.addShip(carrier);
 
         BattleshipImageView battleship = new BattleshipImageView();
         this.getChildren().add(battleship);
+        player.addShip(battleship);
 
         DestroyerImageView detroyer = new DestroyerImageView();
         this.getChildren().add(detroyer);
+        player.addShip(detroyer);
 
         SubmarineImageView submarine = new SubmarineImageView();
         this.getChildren().add(submarine);
+        player.addShip(submarine);
 
         PatrolImageView patrol = new PatrolImageView();
         this.getChildren().add(patrol);
+        player.addShip(patrol);
 
         Button button = new Button();
         button.setText("READY!");

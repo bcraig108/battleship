@@ -13,7 +13,6 @@ public class OceanGridRectangle extends Rectangle {
     
     private int row;
     private int col;
-    private Player player;
     private OceanPane pane;
     private ExplosionImageView explosion;
 
@@ -22,7 +21,6 @@ public class OceanGridRectangle extends Rectangle {
 
         this.row = row;
         this.col = col;
-        this.player = player;
         this.pane = pane;
 
         Color color =  Color.SEAGREEN;
@@ -33,7 +31,7 @@ public class OceanGridRectangle extends Rectangle {
 
         this.setOnDragEntered(new OceanGridRectangleDragEnteredEventHandler(pane, this));
         this.setOnDragDropped(new OceanGridRectangleDragDroppedEventHandler(pane, this));
-        this.setOnMouseClicked(new OceanGridRectangleMouseClickedEventHandler(pane, this));
+        this.setOnMouseClicked(new OceanGridRectangleMouseClickedEventHandler(pane, this, player));
     }
 
     public int getRow() {

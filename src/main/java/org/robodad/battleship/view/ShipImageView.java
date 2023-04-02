@@ -4,6 +4,7 @@ import org.robodad.battleship.Constants;
 import org.robodad.battleship.events.ShipImageViewDragDetectedEventHandler;
 import org.robodad.battleship.events.ShipImageViewDragDoneEventHandler;
 import org.robodad.battleship.events.ShipImageViewMouseClickedEventHandler;
+import org.robodad.battleship.model.Shot;
 
 import javafx.geometry.Orientation;
 import javafx.scene.image.Image;
@@ -11,6 +12,7 @@ import javafx.scene.image.ImageView;
 
 public class ShipImageView extends ImageView {
 
+    private String name;
     private int cells;
     private Orientation orientation;
     private Image horizImage;
@@ -24,8 +26,9 @@ public class ShipImageView extends ImageView {
      * @param cells
      * @param file
      */
-    public ShipImageView(int cells, String HorizFile, String VertFile) {
-
+    public ShipImageView(String name, int cells, String HorizFile, String VertFile) {
+        
+        this.name = name;
         this.cells = cells;
         this.orientation = Orientation.HORIZONTAL;
 
@@ -52,6 +55,10 @@ public class ShipImageView extends ImageView {
         this.setOnDragDetected(new ShipImageViewDragDetectedEventHandler(this));
         this.setOnDragDone(new ShipImageViewDragDoneEventHandler(this));
         this.setOnMouseClicked(new ShipImageViewMouseClickedEventHandler(this));
+    }
+
+    public String getName() {
+        return name;
     }
 
     /**
@@ -156,5 +163,11 @@ public class ShipImageView extends ImageView {
         setColStart(colStart);
     
         update(pane);
+    }
+
+    public boolean isHit(Shot shot) {
+        return 
+            shot.getRow() >= rowStart && shot.getRow() < rowStart + getRows() && 
+            shot.getCol() >= colStart && shot.getCol() < colStart + getCols();
     }
 }
