@@ -1,8 +1,8 @@
 package org.robodad.battleship.view;
 
+import org.robodad.battleship.controller.GameState;
 import org.robodad.battleship.model.Player;
 
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -11,7 +11,7 @@ public class PlayerBoard extends BorderPane {
 
     private Player player;
 
-    public PlayerBoard(Player player) {
+    public PlayerBoard(Player player, GameState gameState) {
         this.player = player;
 
         Label label = new Label(player.getName());
@@ -21,7 +21,7 @@ public class PlayerBoard extends BorderPane {
         OceanPane game = new OceanPane(player);
         this.setCenter(game);
 
-        FleetPane fleet = new FleetPane(player);
+        FleetPane fleet = new FleetPane(player, gameState);
         this.setBottom(fleet);
     }
 
