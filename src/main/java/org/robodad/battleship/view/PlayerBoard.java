@@ -18,7 +18,7 @@ public class PlayerBoard extends BorderPane {
         label.setAlignment(Pos.CENTER);
         this.setTop(label);
 
-        OceanPane game = new OceanPane(player);
+        OceanPane game = new OceanPane(player, gameState);
         this.setCenter(game);
 
         FleetPane fleet = new FleetPane(player, gameState);

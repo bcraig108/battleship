@@ -1,6 +1,7 @@
 package org.robodad.battleship.view;
 
 import org.robodad.battleship.Constants;
+import org.robodad.battleship.controller.GameState;
 import org.robodad.battleship.model.Player;
 
 import javafx.geometry.Pos;
@@ -11,7 +12,7 @@ public class OceanPane extends GridPane {
 
     Player player;
 
-    public OceanPane(Player player) {
+    public OceanPane(Player player, GameState gameState) {
         this.player = player;
 
         for (int row = 1; row <= Constants.NUM_ROWS; row++) {
@@ -32,7 +33,7 @@ public class OceanPane extends GridPane {
                 colLabel.setMinHeight(Constants.SIZE);
                 this.add(colLabel,col,0);
                     
-                OceanGridRectangle rectangle = new OceanGridRectangle(row, col, this, player);
+                OceanGridRectangle rectangle = new OceanGridRectangle(row, col, this, player, gameState);
     
                 this.add(rectangle,col,row,1,1);        
             }

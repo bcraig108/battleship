@@ -1,6 +1,7 @@
 package org.robodad.battleship.view;
 
 import org.robodad.battleship.Constants;
+import org.robodad.battleship.controller.GameState;
 import org.robodad.battleship.events.OceanGridRectangleDragDroppedEventHandler;
 import org.robodad.battleship.events.OceanGridRectangleDragEnteredEventHandler;
 import org.robodad.battleship.events.OceanGridRectangleMouseClickedEventHandler;
@@ -17,7 +18,7 @@ public class OceanGridRectangle extends Rectangle {
     private OceanPane pane;
     private ImageView image;
 
-    public OceanGridRectangle(int row, int col, OceanPane pane, Player player) {
+    public OceanGridRectangle(int row, int col, OceanPane pane, Player player, GameState gameState) {
         super(Constants.SIZE, Constants.SIZE);
 
         this.row = row;
@@ -32,7 +33,7 @@ public class OceanGridRectangle extends Rectangle {
 
         this.setOnDragEntered(new OceanGridRectangleDragEnteredEventHandler(pane, this));
         this.setOnDragDropped(new OceanGridRectangleDragDroppedEventHandler(pane, this));
-        this.setOnMouseClicked(new OceanGridRectangleMouseClickedEventHandler(pane, this, player));
+        this.setOnMouseClicked(new OceanGridRectangleMouseClickedEventHandler(this, player, gameState));
     }
 
     public int getRow() {
