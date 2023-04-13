@@ -41,6 +41,7 @@ public class Player {
 
     public void setPane(OceanPane pane) {
         this.pane = pane;
+        this.fleet.setPane(pane);
     }
 
     public boolean isReady() {
@@ -87,11 +88,11 @@ public class Player {
 
     public void handleShot(Shot shot) {
         if (isHit(shot)) {
-            System.out.println(name + ": HIT R" + shot.getRow() + " C" + shot.getCol());
+            // System.out.println(name + ": HIT R" + shot.getRow() + " C" + shot.getCol());
             pane.addExplosion(shot);
         }
         else {
-            System.out.println(name + ": MISS R" + shot.getRow() + " C" + shot.getCol());
+            // System.out.println(name + ": MISS R" + shot.getRow() + " C" + shot.getCol());
             pane.addPlop(shot);
         }
     }

@@ -20,11 +20,16 @@ public class ShipRules {
         return view.getName();
     }
 
+    public ShipImageView getView() {
+        return view;
+    }
+    
     public boolean isHit(Shot shot) {
-        if (hits.contains(shot)) {
-            return true;
-        }
-        else if (view.isHit(shot)) {
+        // if (hits.contains(shot)) {
+        //     return true;
+        // }
+        // else 
+        if (view.isHit(shot)) {
             hits.add(shot);
             return true;
         }

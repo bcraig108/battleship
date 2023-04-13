@@ -63,7 +63,7 @@ public class OceanPane extends GridPane {
         lastShot = shot;
     }
 
-    private void removeLast() {
+    public void removeLast() {
         if (image != null && lastShot != null) {
             this.getChildren().remove(image);
 
