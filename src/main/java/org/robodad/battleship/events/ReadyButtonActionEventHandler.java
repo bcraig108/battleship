@@ -1,6 +1,6 @@
 package org.robodad.battleship.events;
 
-import org.robodad.battleship.controller.GameState;
+import org.robodad.battleship.controller.GameRules;
 import org.robodad.battleship.model.Player;
 import org.robodad.battleship.model.Player.PlayerState;
 import javafx.event.ActionEvent;
@@ -11,12 +11,12 @@ public class ReadyButtonActionEventHandler implements EventHandler<ActionEvent> 
 
     private Player player;
     private Button button;
-    private GameState gameState;
+    private GameRules gameRules;
 
-    public ReadyButtonActionEventHandler(Player player, Button button, GameState gameState) {
+    public ReadyButtonActionEventHandler(Player player, Button button, GameRules gameRules) {
         this.player = player;
         this.button = button;
-        this.gameState = gameState;
+        this.gameRules = gameRules;
     }
 
     @Override
@@ -24,9 +24,8 @@ public class ReadyButtonActionEventHandler implements EventHandler<ActionEvent> 
         player.setState(PlayerState.READY);
 
         System.out.println(button.getText() + " " + player.getName());
-
-        if (this.gameState.isReady()) {
-            System.out.println("GAME READY!");
+        if (this.gameRules.isReady()) {
+            gameRules.start();
         }
     }
 }

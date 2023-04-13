@@ -1,6 +1,6 @@
 package org.robodad.battleship.events;
 
-import org.robodad.battleship.controller.GameState;
+import org.robodad.battleship.controller.GameRules;
 import org.robodad.battleship.model.Player;
 import org.robodad.battleship.model.Shot;
 import org.robodad.battleship.view.OceanGridRectangle;
@@ -12,9 +12,9 @@ public class OceanGridRectangleMouseClickedEventHandler implements EventHandler<
     
     private OceanGridRectangle rectangle;
     private Player player;
-    private GameState gameState;
+    private GameRules gameState;
 
-    public OceanGridRectangleMouseClickedEventHandler(OceanGridRectangle rectangle, Player player, GameState gameState) {
+    public OceanGridRectangleMouseClickedEventHandler(OceanGridRectangle rectangle, Player player, GameRules gameState) {
         this.rectangle = rectangle;
         this.player = player;
         this.gameState = gameState;

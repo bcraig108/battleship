@@ -2,8 +2,8 @@ package org.robodad.battleship;
 
 import java.io.IOException;
 
-import org.robodad.battleship.controller.FleetState;
-import org.robodad.battleship.controller.GameState;
+import org.robodad.battleship.controller.FleetRules;
+import org.robodad.battleship.controller.GameRules;
 import org.robodad.battleship.model.Player;
 import org.robodad.battleship.view.GameBoard;
 import javafx.application.Application;
@@ -17,13 +17,13 @@ public class App extends Application {
 
     private static Scene scene;
 
-    private FleetState fleetState1;
-    private FleetState fleetState2;
+    private FleetRules fleetState1;
+    private FleetRules fleetState2;
 
     private Player player1;
     private Player player2;
 
-    private GameState gameState;
+    private GameRules gameState;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -31,7 +31,10 @@ public class App extends Application {
         player1 = new Player("Player 1");
         player2 = new Player("Player 2");
 
-        gameState = new GameState(player1, player2);
+        player1.setOpponent(player2);
+        player2.setOpponent(player1);
+
+        gameState = new GameRules(player1, player2);
 
         scene = new Scene(new GameBoard(player1, player2, gameState));
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());

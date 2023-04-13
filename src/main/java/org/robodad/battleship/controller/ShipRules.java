@@ -6,12 +6,12 @@ import java.util.List;
 import org.robodad.battleship.model.Shot;
 import org.robodad.battleship.view.ShipImageView;
 
-public class ShipState {
+public class ShipRules {
     
     private ShipImageView view;
     private List<Shot> hits;
 
-    public ShipState(ShipImageView view) {
+    public ShipRules(ShipImageView view) {
         this.view = view;
         this.hits = new ArrayList<>();
     }

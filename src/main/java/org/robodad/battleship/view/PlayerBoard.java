@@ -1,6 +1,6 @@
 package org.robodad.battleship.view;
 
-import org.robodad.battleship.controller.GameState;
+import org.robodad.battleship.controller.GameRules;
 import org.robodad.battleship.model.Player;
 
 import javafx.geometry.Pos;
@@ -11,7 +11,7 @@ public class PlayerBoard extends BorderPane {
 
     private Player player;
 
-    public PlayerBoard(Player player, GameState gameState) {
+    public PlayerBoard(Player player, GameRules gameState) {
         this.player = player;
 
         Label label = new Label(player.getName());

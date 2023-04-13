@@ -1,6 +1,6 @@
 package org.robodad.battleship.view;
 
-import org.robodad.battleship.controller.GameState;
+import org.robodad.battleship.controller.GameRules;
 import org.robodad.battleship.model.Player;
 
 import javafx.scene.layout.HBox;
@@ -13,7 +13,7 @@ public class GameBoard extends HBox {
     PlayerBoard playerBoard1;
     PlayerBoard playerBoard2;
 
-    public GameBoard(Player player1, Player player2, GameState gameState) {
+    public GameBoard(Player player1, Player player2, GameRules gameState) {
 
         playerBoard1 = new PlayerBoard(player1, gameState);
         this.getChildren().add(playerBoard1);

@@ -5,21 +5,21 @@ import java.util.List;
 
 import org.robodad.battleship.model.Shot;
 
-public class FleetState {
+public class FleetRules {
     
-    private List<ShipState> ships;
+    private List<ShipRules> ships;
 
-    public FleetState() {
+    public FleetRules() {
         ships = new ArrayList<>();
     }
 
-    public void add(ShipState shipState) {
+    public void add(ShipRules shipState) {
         ships.add(shipState);
         System.out.println("Fleet size " + ships.size());
     }
 
     public boolean isHit(Shot shot) {
-        for (ShipState shipState : ships) {
+        for (ShipRules shipState : ships) {
             if (shipState.isHit(shot)) {
                 if (shipState.isSunk()) {
                     System.out.println(shipState.getName() + " sunk!");

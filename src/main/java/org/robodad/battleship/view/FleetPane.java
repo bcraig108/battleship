@@ -1,6 +1,6 @@
 package org.robodad.battleship.view;
 
-import org.robodad.battleship.controller.GameState;
+import org.robodad.battleship.controller.GameRules;
 import org.robodad.battleship.events.ReadyButtonActionEventHandler;
 import org.robodad.battleship.model.Player;
 
@@ -11,9 +11,9 @@ import javafx.scene.layout.VBox;
 public class FleetPane extends VBox {
     
     private Player player;
-    private GameState gameState;
+    private GameRules gameState;
 
-    public FleetPane(Player player, GameState gameState) {
+    public FleetPane(Player player, GameRules gameState) {
         this.player = player;
         this.gameState = gameState;
 
