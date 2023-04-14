@@ -18,7 +18,6 @@ public class OceanPane extends GridPane {
 
     public OceanPane(Player player, GameRules gameState) {
         this.player = player;
-        player.setPane(this);
 
         for (int row = 1; row <= Constants.NUM_ROWS; row++) {
 

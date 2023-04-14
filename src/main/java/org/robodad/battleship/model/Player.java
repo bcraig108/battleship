@@ -3,6 +3,7 @@ package org.robodad.battleship.model;
 import org.robodad.battleship.controller.FleetRules;
 import org.robodad.battleship.controller.ShipRules;
 import org.robodad.battleship.view.OceanPane;
+import org.robodad.battleship.view.PlayerBoard;
 import org.robodad.battleship.view.ShipImageView;
 
 import javafx.application.Platform;
@@ -15,7 +16,7 @@ public class Player {
     private PlayerState state;
     private FleetRules fleet;
     private Player opponent;
-    private OceanPane pane;
+    private PlayerBoard board;
 
     public Player(String name) {
         this.name = name;
@@ -39,9 +40,9 @@ public class Player {
         this.opponent = opponent;
     }
 
-    public void setPane(OceanPane pane) {
-        this.pane = pane;
-        this.fleet.setPane(pane);
+    public void setPlayerBoard(PlayerBoard board) {
+        this.board = board;
+        this.fleet.setPlayerBoard(board);
     }
 
     public boolean isReady() {
@@ -88,12 +89,10 @@ public class Player {
 
     public void handleShot(Shot shot) {
         if (isHit(shot)) {
-            // System.out.println(name + ": HIT R" + shot.getRow() + " C" + shot.getCol());
-            pane.addExplosion(shot);
+            board.addExplosion(shot);
         }
         else {
-            // System.out.println(name + ": MISS R" + shot.getRow() + " C" + shot.getCol());
-            pane.addPlop(shot);
+            board.addPlop(shot);
         }
     }
 }

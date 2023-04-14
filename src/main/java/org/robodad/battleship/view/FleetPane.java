@@ -6,18 +6,21 @@ import org.robodad.battleship.model.Player;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 public class FleetPane extends VBox {
     
-    private Player player;
-    private GameRules gameState;
+    // private Player player;
+    // private GameRules gameState;
+    Label label;
 
-    public FleetPane(Player player, GameRules gameState) {
-        this.player = player;
-        this.gameState = gameState;
+    public FleetPane(Player player, GameRules gameRules) {
 
         setAlignment(Pos.CENTER);
+
+        label = new Label();
+        this.getChildren().add(label);
 
         CarrierImageView carrier = new CarrierImageView();
         this.getChildren().add(carrier);
@@ -41,7 +44,12 @@ public class FleetPane extends VBox {
 
         Button button = new Button();
         button.setText("READY!");
-        button.setOnAction(new ReadyButtonActionEventHandler(player, button, gameState));
+        button.setOnAction(new ReadyButtonActionEventHandler(player, button, gameRules));
         this.getChildren().add(button);
     }
+
+    void updateNumShips(int count) {
+        label.setText(count + " ships left");
+    }
+
 }

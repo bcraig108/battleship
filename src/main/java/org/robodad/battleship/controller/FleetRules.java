@@ -4,34 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.robodad.battleship.model.Shot;
-import org.robodad.battleship.view.OceanPane;
+import org.robodad.battleship.view.PlayerBoard;
 
 public class FleetRules {
     
     private List<ShipRules> ships;
-    private OceanPane pane;
+    private PlayerBoard board;
 
     public FleetRules() {
         ships = new ArrayList<>();
     }
 
-    public void add(ShipRules shipState) {
-        ships.add(shipState);
-        System.out.println("Fleet size " + ships.size());
+    public void add(ShipRules shipRules) {
+        ships.add(shipRules);
+        board.updateNumShips(ships.size());
     }
 
-    public void setPane(OceanPane pane) {
-        this.pane = pane;
+    public void setPlayerBoard(PlayerBoard board) {
+        this.board = board;
     }
 
     public boolean isHit(Shot shot) {
-        for (ShipRules shipState : ships) {
-            if (shipState.isHit(shot)) {
-                if (shipState.isSunk()) {
-                    pane.getChildren().remove(shipState.getView());
-                    ships.remove(shipState);
+        for (ShipRules shipRules : ships) {
+            if (shipRules.isHit(shot)) {
+                if (shipRules.isSunk()) {
+                    board.removeShip(shipRules);
+                    ships.remove(shipRules);
                 }
-                System.out.println(ships.size() + " ships left");
+                board.updateNumShips(ships.size());
                 return true;
             }
         }

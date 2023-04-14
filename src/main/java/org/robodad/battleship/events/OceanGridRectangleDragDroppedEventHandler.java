@@ -5,7 +5,6 @@ import org.robodad.battleship.view.OceanPane;
 import org.robodad.battleship.view.ShipImageView;
 
 import javafx.event.EventHandler;
-import javafx.geometry.Orientation;
 import javafx.scene.input.DragEvent;
 
 public class OceanGridRectangleDragDroppedEventHandler implements EventHandler<DragEvent> {
