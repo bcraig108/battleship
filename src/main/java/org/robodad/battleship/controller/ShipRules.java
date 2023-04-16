@@ -25,12 +25,10 @@ public class ShipRules {
     }
     
     public boolean isHit(Shot shot) {
-        // if (hits.contains(shot)) {
-        //     return true;
-        // }
-        // else 
         if (view.isHit(shot)) {
-            hits.add(shot);
+            if (!hits.contains(shot)) {
+                hits.add(shot);
+            }
             return true;
         }
         else {

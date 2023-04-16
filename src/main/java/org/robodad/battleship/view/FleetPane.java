@@ -11,16 +11,18 @@ import javafx.scene.layout.VBox;
 
 public class FleetPane extends VBox {
     
-    // private Player player;
-    // private GameRules gameState;
-    Label label;
+    Label messageLabel;
+    Label countLabel;
 
-    public FleetPane(Player player, GameRules gameRules) {
+    public FleetPane(Player player, GameRules rules) {
 
         setAlignment(Pos.CENTER);
 
-        label = new Label();
-        this.getChildren().add(label);
+        messageLabel = new Label("Prepare for battle!");
+        this.getChildren().add(messageLabel);
+
+        countLabel = new Label();
+        this.getChildren().add(countLabel);
 
         CarrierImageView carrier = new CarrierImageView();
         this.getChildren().add(carrier);
@@ -44,12 +46,16 @@ public class FleetPane extends VBox {
 
         Button button = new Button();
         button.setText("READY!");
-        button.setOnAction(new ReadyButtonActionEventHandler(player, button, gameRules));
+        button.setOnAction(new ReadyButtonActionEventHandler(player, rules, button, this));
         this.getChildren().add(button);
     }
 
-    void updateNumShips(int count) {
-        label.setText(count + " ships left");
+    public void updateMessage(String message) {
+        messageLabel.setText(message);
+    }
+
+    public void updateNumShips(int count) {
+        countLabel.setText(count + " ships left");
     }
 
 }

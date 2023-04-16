@@ -20,6 +20,10 @@ public class Shot {
         return col;
     }
 
+    public String toString() {
+        return String.valueOf((char)(row + 64)) + Integer.toString(col);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)

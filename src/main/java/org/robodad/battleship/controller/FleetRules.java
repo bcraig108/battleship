@@ -17,7 +17,6 @@ public class FleetRules {
 
     public void add(ShipRules shipRules) {
         ships.add(shipRules);
-        board.updateNumShips(ships.size());
     }
 
     public void setPlayerBoard(PlayerBoard board) {
@@ -30,15 +29,24 @@ public class FleetRules {
                 if (shipRules.isSunk()) {
                     board.removeShip(shipRules);
                     ships.remove(shipRules);
+                    board.updateMessage(shot + ": " + shipRules.getName() + " sunk!");
+                    board.updateNumShips(ships.size());
                 }
-                board.updateNumShips(ships.size());
+                else {
+                    board.updateMessage(shot + ": " + shipRules.getName() + " hit!");
+                }
                 return true;
             }
         }
+        board.updateMessage(shot + ": Miss!");
         return false;
     }
 
     public boolean isLost() {
-        return ships.isEmpty();
+        // TODO throws exception
+        // if (ships.isEmpty()) {
+        //     board.updateMessage("Fleet Sunk!");
+        // }
+        return ships.isEmpty();        
     }
 }

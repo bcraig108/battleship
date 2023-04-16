@@ -15,7 +15,7 @@ public class PlayerBoard extends BorderPane {
     private OceanPane ocean;
     private FleetPane fleet;
 
-    public PlayerBoard(Player player, GameRules gameState) {
+    public PlayerBoard(Player player, GameRules rules) {
         this.player = player;
         this.player.setPlayerBoard(this);
 
@@ -23,10 +23,10 @@ public class PlayerBoard extends BorderPane {
         label.setAlignment(Pos.CENTER);
         this.setTop(label);
 
-        ocean = new OceanPane(player, gameState);
+        ocean = new OceanPane(player, rules);
         this.setCenter(ocean);
 
-        fleet = new FleetPane(player, gameState);
+        fleet = new FleetPane(player, rules);
         this.setBottom(fleet);
     }
 
@@ -36,6 +36,10 @@ public class PlayerBoard extends BorderPane {
 
     public void removeShip(ShipRules ship) {
         ocean.getChildren().remove(ship.getView());
+    }
+
+    public void updateMessage(String message) {
+        fleet.updateMessage(message);
     }
 
     public void updateNumShips(int count) {
