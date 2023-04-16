@@ -2,6 +2,7 @@ package org.robodad.battleship.model;
 
 import org.robodad.battleship.controller.FleetRules;
 import org.robodad.battleship.controller.ShipRules;
+import org.robodad.battleship.strategy.Stategy;
 import org.robodad.battleship.view.OceanPane;
 import org.robodad.battleship.view.PlayerBoard;
 import org.robodad.battleship.view.ShipImageView;
@@ -12,25 +13,25 @@ public class Player {
     
     public enum PlayerState {SETUP, READY, PLAYING, WIN, LOSE};
 
-    private String name;
+    private Stategy strategy;
     private PlayerState state;
     private FleetRules fleet;
     private Player opponent;
     private PlayerBoard board;
 
-    public Player(String name) {
-        this.name = name;
+    public Player(Stategy strategy) {
+        this.strategy = strategy;
         this.state = PlayerState.SETUP;
         this.fleet = new FleetRules();
     }
 
     public String getName() {
-        return this.name;
+        return this.strategy.getName();
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    // public void setName(String name) {
+    //     this.name = name;
+    // }
 
     public void setState(PlayerState state) {
         this.state = state;
@@ -76,13 +77,10 @@ public class Player {
     }
 
     public void nextTurn() {
-        int row = (int)(Math.random() * 10) + 1;
-        int col = (int)(Math.random() * 10) + 1;
-
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                opponent.handleShot(new Shot(row, col));
+                opponent.handleShot(strategy.aim());
             }
         });
     }

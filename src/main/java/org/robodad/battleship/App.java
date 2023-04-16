@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.robodad.battleship.controller.FleetRules;
 import org.robodad.battleship.controller.GameRules;
 import org.robodad.battleship.model.Player;
+import org.robodad.battleship.strategy.Random;
+import org.robodad.battleship.strategy.RandomMemory;
 import org.robodad.battleship.view.GameBoard;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -28,8 +30,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        player1 = new Player("Player 1");
-        player2 = new Player("Player 2");
+        player1 = new Player(new Random());
+        player2 = new Player(new RandomMemory());
 
         player1.setOpponent(player2);
         player2.setOpponent(player1);
