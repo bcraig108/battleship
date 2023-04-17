@@ -10,7 +10,7 @@ public class Random implements Stategy {
     }
 
     @Override
-    public Shot aim() {
+    public Shot aim(Result lastResult) {
         int row = (int)(Math.random() * 10) + 1;
         int col = (int)(Math.random() * 10) + 1;
 

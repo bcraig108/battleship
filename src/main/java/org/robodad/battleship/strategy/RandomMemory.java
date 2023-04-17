@@ -26,7 +26,7 @@ public class RandomMemory implements Stategy {
     }
 
     @Override
-    public Shot aim() {
+    public Shot aim(Result lastResult) {
         // select a shot to take from the available list
         int index = (int)(Math.random() * available.size());
         Shot shot = available.get(index);

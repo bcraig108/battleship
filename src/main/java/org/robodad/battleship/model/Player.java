@@ -3,6 +3,7 @@ package org.robodad.battleship.model;
 import org.robodad.battleship.controller.FleetRules;
 import org.robodad.battleship.controller.ShipRules;
 import org.robodad.battleship.strategy.Stategy;
+import org.robodad.battleship.strategy.Stategy.Result;
 import org.robodad.battleship.view.OceanPane;
 import org.robodad.battleship.view.PlayerBoard;
 import org.robodad.battleship.view.ShipImageView;
@@ -18,6 +19,7 @@ public class Player {
     private FleetRules fleet;
     private Player opponent;
     private PlayerBoard board;
+    private Result result = Result.MISS;
 
     public Player(Stategy strategy) {
         this.strategy = strategy;
@@ -28,10 +30,6 @@ public class Player {
     public String getName() {
         return this.strategy.getName();
     }
-
-    // public void setName(String name) {
-    //     this.name = name;
-    // }
 
     public void setState(PlayerState state) {
         this.state = state;
@@ -80,17 +78,20 @@ public class Player {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                opponent.handleShot(strategy.aim());
+                Shot shot = strategy.aim(result);
+                result = opponent.handleShot(shot);
             }
         });
     }
 
-    public void handleShot(Shot shot) {
+    public Result handleShot(Shot shot) {
         if (isHit(shot)) {
             board.addExplosion(shot);
+            return Result.HIT;
         }
         else {
             board.addPlop(shot);
+            return Result.MISS;
         }
     }
 }
