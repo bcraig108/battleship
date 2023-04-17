@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.robodad.battleship.model.Shot;
+import org.robodad.battleship.strategy.Stategy.Result;
 import org.robodad.battleship.view.PlayerBoard;
 
 public class FleetRules {
@@ -23,30 +24,28 @@ public class FleetRules {
         this.board = board;
     }
 
-    public boolean isHit(Shot shot) {
+    public Result handleShot(Shot shot) {
         for (ShipRules shipRules : ships) {
-            if (shipRules.isHit(shot)) {
-                if (shipRules.isSunk()) {
-                    board.removeShip(shipRules);
-                    ships.remove(shipRules);
-                    board.updateMessage(shot + ": " + shipRules.getName() + " sunk!");
-                    board.updateNumShips(ships.size());
-                }
-                else {
-                    board.updateMessage(shot + ": " + shipRules.getName() + " hit!");
-                }
-                return true;
+            Result result = shipRules.handleShot(shot);
+            switch (result) {
+            case SUNK:
+                board.removeShip(shipRules);
+                ships.remove(shipRules);
+                board.updateMessage(shot + ": " + shipRules.getName() + " sunk!");
+                board.updateNumShips(ships.size());
+                return result;
+            case HIT:
+                board.updateMessage(shot + ": " + shipRules.getName() + " hit!");
+                return result;
+            case MISS:
+            default:
+                board.updateMessage(shot + ": Miss!");
             }
         }
-        board.updateMessage(shot + ": Miss!");
-        return false;
+        return Result.MISS;
     }
 
     public boolean isLost() {
-        // TODO throws exception
-        // if (ships.isEmpty()) {
-        //     board.updateMessage("Fleet Sunk!");
-        // }
         return ships.isEmpty();        
     }
 }

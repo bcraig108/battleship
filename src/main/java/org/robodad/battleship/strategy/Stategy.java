@@ -4,7 +4,7 @@ import org.robodad.battleship.model.Shot;
 
 public interface Stategy {
     
-    public enum Result {HIT, MISS};
+    public enum Result {HIT, MISS, SUNK};
 
     public String getName();
 

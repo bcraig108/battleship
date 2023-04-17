@@ -70,10 +70,6 @@ public class Player {
         fleet.add(new ShipRules(view));
     }
 
-    public boolean isHit(Shot shot) {
-        return fleet.isHit(shot);
-    }
-
     public void nextTurn() {
         Platform.runLater(new Runnable() {
             @Override
@@ -85,13 +81,16 @@ public class Player {
     }
 
     public Result handleShot(Shot shot) {
-        if (isHit(shot)) {
+        Result result = fleet.handleShot(shot);
+        switch (result) {
+        case HIT:
+        case SUNK:
             board.addExplosion(shot);
-            return Result.HIT;
-        }
-        else {
+            break;
+        case MISS:
             board.addPlop(shot);
-            return Result.MISS;
+            break;
         }
+        return result;
     }
 }

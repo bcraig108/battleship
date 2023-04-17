@@ -1,17 +1,21 @@
 package org.robodad.battleship.controller;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.Optional;
 
 import org.robodad.battleship.model.Player;
 import org.robodad.battleship.model.Player.PlayerState;
+
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 public class GameRules {
 
     private Player player1;
     private Player player2;
     private Player nextPlayer;
+    private Alert alert;
 
     public GameRules(Player player1, Player player2) {
         this.player1 = player1;
@@ -51,8 +55,9 @@ public class GameRules {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+            
             if (nextPlayer.isWin()) {
-                System.out.println(nextPlayer.getName() + " Wins!");
+                showWinDialog();
             }
         }
         System.out.println("Game Over!!!");
@@ -65,5 +70,22 @@ public class GameRules {
         else {
             nextPlayer = player1;
         }
+    }
+
+    private void showWinDialog() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Game Over");
+                alert.setHeaderText(null);
+                alert.setContentText(nextPlayer.getName() + " Wins!");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    Platform.exit();
+                }            
+            }
+        });
     }
 }

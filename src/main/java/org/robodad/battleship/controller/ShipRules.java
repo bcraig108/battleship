@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.robodad.battleship.model.Shot;
+import org.robodad.battleship.strategy.Stategy.Result;
 import org.robodad.battleship.view.ShipImageView;
 
 public class ShipRules {
@@ -24,15 +25,20 @@ public class ShipRules {
         return view;
     }
     
-    public boolean isHit(Shot shot) {
+    public Result handleShot(Shot shot) {
         if (view.isHit(shot)) {
             if (!hits.contains(shot)) {
                 hits.add(shot);
             }
-            return true;
+            if (isSunk()) {
+                return Result.SUNK;
+            }
+            else {
+                return Result.HIT;
+            }
         }
         else {
-            return false;
+            return Result.MISS;
         }
     }
 

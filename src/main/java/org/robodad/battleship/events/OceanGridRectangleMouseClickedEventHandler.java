@@ -22,14 +22,7 @@ public class OceanGridRectangleMouseClickedEventHandler implements EventHandler<
 
     public void handle(MouseEvent event) {
         if (event.getButton() == MouseButton.PRIMARY && gameState.isReady()) {
-            if (player.isHit(new Shot(getRow(), getCol()))) {
-                System.out.println("Hit! ROW " + getRow() + " COL " + getCol());
-                rectangle.addExplosion();
-            }
-            else {
-                System.out.println("Miss! ROW " + getRow() + " COL " + getCol());
-                rectangle.addPlop();
-            }
+            player.handleShot(new Shot(getRow(), getCol()));
         }
         event.consume();
     }
