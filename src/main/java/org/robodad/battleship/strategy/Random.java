@@ -2,7 +2,7 @@ package org.robodad.battleship.strategy;
 
 import org.robodad.battleship.model.Shot;
 
-public class Random implements Stategy {
+public class Random implements Strategy {
 
     @Override
     public String getName() {

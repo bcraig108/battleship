@@ -6,7 +6,7 @@ import java.util.List;
 import org.robodad.battleship.Constants;
 import org.robodad.battleship.model.Shot;
 
-public class RandomMemory implements Stategy {
+public class RandomMemory implements Strategy {
 
     List<Shot> available;
 

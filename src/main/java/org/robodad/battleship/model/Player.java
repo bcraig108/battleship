@@ -2,9 +2,8 @@ package org.robodad.battleship.model;
 
 import org.robodad.battleship.controller.FleetRules;
 import org.robodad.battleship.controller.ShipRules;
-import org.robodad.battleship.strategy.Stategy;
-import org.robodad.battleship.strategy.Stategy.Result;
-import org.robodad.battleship.view.OceanPane;
+import org.robodad.battleship.strategy.Strategy;
+import org.robodad.battleship.strategy.Strategy.Result;
 import org.robodad.battleship.view.PlayerBoard;
 import org.robodad.battleship.view.ShipImageView;
 
@@ -14,14 +13,14 @@ public class Player {
     
     public enum PlayerState {SETUP, READY, PLAYING, WIN, LOSE};
 
-    private Stategy strategy;
+    private Strategy strategy;
     private PlayerState state;
     private FleetRules fleet;
     private Player opponent;
     private PlayerBoard board;
     private Result result = Result.MISS;
 
-    public Player(Stategy strategy) {
+    public Player(Strategy strategy) {
         this.strategy = strategy;
         this.state = PlayerState.SETUP;
         this.fleet = new FleetRules();

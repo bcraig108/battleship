@@ -1,15 +1,19 @@
 package org.robodad.battleship;
 
+import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
+import java.net.URLClassLoader;
 
-import org.robodad.battleship.controller.FleetRules;
 import org.robodad.battleship.controller.GameRules;
 import org.robodad.battleship.model.Player;
-import org.robodad.battleship.strategy.Random;
-import org.robodad.battleship.strategy.RandomMemory;
+import org.robodad.battleship.strategy.Strategy;
 import org.robodad.battleship.view.GameBoard;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -19,9 +23,6 @@ public class App extends Application {
 
     private static Scene scene;
 
-    private FleetRules fleetState1;
-    private FleetRules fleetState2;
-
     private Player player1;
     private Player player2;
 
@@ -30,20 +31,61 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        player1 = new Player(new Random());
-        player2 = new Player(new RandomMemory());
+        try {
+            Strategy strategy1 = loadStrategy(stage, "Player 1");
+            Strategy strategy2 = loadStrategy(stage, "Player 2");
 
-        player1.setOpponent(player2);
-        player2.setOpponent(player1);
+            player1 = new Player(strategy1);
+            player2 = new Player(strategy2);
 
-        gameState = new GameRules(player1, player2);
+            player1.setOpponent(player2);
+            player2.setOpponent(player1);
 
-        scene = new Scene(new GameBoard(player1, player2, gameState));
-        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+            gameState = new GameRules(player1, player2);
 
-        stage.setTitle("Battleship");
-        stage.setScene(scene);
-        stage.show();
+            scene = new Scene(new GameBoard(player1, player2, gameState));
+            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+
+            stage.setTitle("Battleship");
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (ClassNotFoundException | NoSuchMethodException | 
+                SecurityException | InstantiationException | IllegalAccessException | 
+                InvocationTargetException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Strategy loadStrategy(Stage stage, String player) throws 
+        ClassNotFoundException, NoSuchMethodException, 
+        SecurityException, InstantiationException, IllegalAccessException, 
+        InvocationTargetException, IOException {
+        
+        Strategy strategy = null;
+
+        while (strategy == null) {
+
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open AI for " + player);
+
+            File file = fileChooser.showOpenDialog(stage);
+
+            if (file == null) continue;
+
+            URL loadPath = file.toURI().toURL();
+            URL[] classUrl = new URL[]{loadPath};
+            
+            URLClassLoader cl = new URLClassLoader(classUrl);
+            
+            Class<?> loadedClass = cl.loadClass("org.robodad.battleship.strategy.Random"); // TODO - fix name
+
+            strategy = (Strategy)loadedClass.getDeclaredConstructor().newInstance();
+
+            cl.close();
+        }
+
+        return strategy;
     }
 
     public static void main(String[] args) {

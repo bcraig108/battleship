@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.robodad.battleship.model.Shot;
-import org.robodad.battleship.strategy.Stategy.Result;
+import org.robodad.battleship.strategy.Strategy.Result;
 import org.robodad.battleship.view.ShipImageView;
 
 public class ShipRules {
