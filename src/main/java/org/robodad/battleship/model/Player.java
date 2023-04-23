@@ -1,13 +1,14 @@
 package org.robodad.battleship.model;
 
+import org.robodad.battleship.Constants.ShipType;
+import org.robodad.battleship.Constants.ShotResult;
 import org.robodad.battleship.controller.FleetRules;
 import org.robodad.battleship.controller.ShipRules;
-import org.robodad.battleship.strategy.Strategy;
-import org.robodad.battleship.strategy.Strategy.Result;
 import org.robodad.battleship.view.PlayerBoard;
 import org.robodad.battleship.view.ShipImageView;
 
 import javafx.application.Platform;
+import plugins.Strategy;
 
 public class Player {
     
@@ -18,12 +19,13 @@ public class Player {
     private FleetRules fleet;
     private Player opponent;
     private PlayerBoard board;
-    private Result result = Result.MISS;
+    private Result result;
 
     public Player(Strategy strategy) {
         this.strategy = strategy;
         this.state = PlayerState.SETUP;
         this.fleet = new FleetRules();
+        this.result = new Result(ShotResult.MISS, ShipType.NONE);
     }
 
     public String getName() {
@@ -81,7 +83,7 @@ public class Player {
 
     public Result handleShot(Shot shot) {
         Result result = fleet.handleShot(shot);
-        switch (result) {
+        switch (result.getResult()) {
         case HIT:
         case SUNK:
             board.addExplosion(shot);

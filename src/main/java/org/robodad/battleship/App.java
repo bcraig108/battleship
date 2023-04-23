@@ -8,13 +8,13 @@ import java.net.URLClassLoader;
 
 import org.robodad.battleship.controller.GameRules;
 import org.robodad.battleship.model.Player;
-import org.robodad.battleship.strategy.Strategy;
 import org.robodad.battleship.view.GameBoard;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import plugins.Strategy;
 
 /**
  * JavaFX App
@@ -78,7 +78,7 @@ public class App extends Application {
             
             URLClassLoader cl = new URLClassLoader(classUrl);
             
-            Class<?> loadedClass = cl.loadClass("org.robodad.battleship.strategy.Random"); // TODO - fix name
+            Class<?> loadedClass = cl.loadClass("plugins.Random"); // TODO - fix name
 
             strategy = (Strategy)loadedClass.getDeclaredConstructor().newInstance();
 

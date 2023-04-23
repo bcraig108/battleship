@@ -3,8 +3,10 @@ package org.robodad.battleship.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.robodad.battleship.Constants.ShipType;
+import org.robodad.battleship.Constants.ShotResult;
+import org.robodad.battleship.model.Result;
 import org.robodad.battleship.model.Shot;
-import org.robodad.battleship.strategy.Strategy.Result;
 import org.robodad.battleship.view.ShipImageView;
 
 /**
@@ -56,14 +58,14 @@ public class ShipRules {
             }
             // check to see if the ship was sunk or just hit
             if (isSunk()) {
-                return Result.SUNK;
+                return new Result(ShotResult.SUNK, view.getShipType());
             }
             else {
-                return Result.HIT;
+                return new Result(ShotResult.HIT, view.getShipType());
             }
         }
         else {  // the ship was missed
-            return Result.MISS;
+            return new Result(ShotResult.MISS, ShipType.NONE);
         }
     }
 

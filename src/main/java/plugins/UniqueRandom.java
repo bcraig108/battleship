@@ -1,10 +1,11 @@
-package org.robodad.battleship.strategy;
+package plugins;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import org.robodad.battleship.Constants;
 import org.robodad.battleship.model.Shot;
+import org.robodad.battleship.model.Result;
 
 /**
  * This class implements a strategy of unique random shots.  Duplicate shots

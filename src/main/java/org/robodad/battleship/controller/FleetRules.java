@@ -3,8 +3,10 @@ package org.robodad.battleship.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.robodad.battleship.Constants.ShipType;
+import org.robodad.battleship.Constants.ShotResult;
+import org.robodad.battleship.model.Result;
 import org.robodad.battleship.model.Shot;
-import org.robodad.battleship.strategy.Strategy.Result;
 import org.robodad.battleship.view.PlayerBoard;
 
 /**
@@ -53,7 +55,7 @@ public class FleetRules {
             // check whether the ship was sunk, hit or missed
             Result result = shipRules.handleShot(shot);
 
-            switch (result) {
+            switch (result.getResult()) {
             case SUNK:
                 // remove the ship from the fleet
                 ships.remove(shipRules);
@@ -77,7 +79,7 @@ public class FleetRules {
         }
  
         // all ships in fleet were missed
-        return Result.MISS;
+        return new Result(ShotResult.MISS, ShipType.NONE);
     }
 
     /**

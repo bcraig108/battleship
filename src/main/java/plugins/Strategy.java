@@ -1,19 +1,12 @@
-package org.robodad.battleship.strategy;
+package plugins;
 
 import org.robodad.battleship.model.Shot;
+import org.robodad.battleship.model.Result;
 
 /**
  * This interface allows plugin Strategy classes to be created
  */
 public interface Strategy {
-    
-    /**
-     * The result of a shot - hit, miss, or sunk
-     */
-    public enum Result {
-        HIT,    /** an opposing ship was hit, by not sunk */ 
-        MISS,   /** no opposing ships were hit */
-        SUNK};  /** an opposing ship was hit and was sunk */
 
     /**
      * @return the name of the strategy

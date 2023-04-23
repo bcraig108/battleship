@@ -1,6 +1,7 @@
-package org.robodad.battleship.strategy;
+package plugins;
 
 import org.robodad.battleship.model.Shot;
+import org.robodad.battleship.model.Result;
 
 /**
  * This class implements a completely random strategy of shots.  Duplicate shots are possible.
@@ -26,6 +27,5 @@ public class Random implements Strategy {
         int col = (int)(Math.random() * 10) + 1;
 
         return new Shot(row, col);
-    }
-    
+    }    
 }

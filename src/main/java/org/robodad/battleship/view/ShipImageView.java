@@ -1,6 +1,7 @@
 package org.robodad.battleship.view;
 
 import org.robodad.battleship.Constants;
+import org.robodad.battleship.Constants.*;
 import org.robodad.battleship.events.ShipImageViewDragDetectedEventHandler;
 import org.robodad.battleship.events.ShipImageViewDragDoneEventHandler;
 import org.robodad.battleship.events.ShipImageViewMouseClickedEventHandler;
@@ -13,6 +14,7 @@ import javafx.scene.image.ImageView;
 public class ShipImageView extends ImageView {
 
     private String name;
+    private ShipType type;
     private int cells;
     private Orientation orientation;
     private Image horizImage;
@@ -26,9 +28,10 @@ public class ShipImageView extends ImageView {
      * @param cells
      * @param file
      */
-    public ShipImageView(String name, int cells, String HorizFile, String VertFile) {
+    public ShipImageView(String name, ShipType type, int cells, String HorizFile, String VertFile) {
         
         this.name = name;
+        this.type = type;
         this.cells = cells;
         this.orientation = Orientation.HORIZONTAL;
 
@@ -59,6 +62,10 @@ public class ShipImageView extends ImageView {
 
     public String getName() {
         return name;
+    }
+
+    public ShipType getShipType() {
+        return type;
     }
 
     /**
@@ -148,14 +155,14 @@ public class ShipImageView extends ImageView {
         if (orientation == Orientation.HORIZONTAL) {
             orientation = Orientation.VERTICAL;
             setImage(this.vertImage);
-            setFitHeight(Constants.SIZE * cells);
-            setFitWidth(Constants.SIZE);
+            setFitHeight(SIZE * cells);
+            setFitWidth(SIZE);
         }
         else {
             orientation = Orientation.HORIZONTAL;
             setImage(this.horizImage);
-            setFitHeight(Constants.SIZE);
-            setFitWidth(Constants.SIZE * cells);
+            setFitHeight(SIZE);
+            setFitWidth(SIZE * cells);
         }
 
         // update the position based on where the mouse was clicked
