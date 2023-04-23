@@ -2,13 +2,24 @@ package org.robodad.battleship.strategy;
 
 import org.robodad.battleship.model.Shot;
 
+/**
+ * This class implements a completely random strategy of shots.  Duplicate shots are possible.
+ */
 public class Random implements Strategy {
 
+    /**
+     * @return the name of the strategy - "Random"
+     */
     @Override
     public String getName() {
-        return new String("RoboDad Random");
+        return new String("Random");
     }
 
+    /**
+     * Shoot at a location on the opponent's board - completely random
+     * @param lastResult the result of the last shot
+     * @return the location to shoot at
+     */
     @Override
     public Shot aim(Result lastResult) {
         int row = (int)(Math.random() * 10) + 1;
