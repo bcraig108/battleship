@@ -137,17 +137,7 @@ public class ShipImageView extends ImageView {
     }
 
     public void HandleMouseButtonPrimary(double sceneX, double sceneY) {
-
         System.out.println("BOOM! X " + sceneX + " Y " + sceneY);
-
-        // System.out.println("BOOM! ROW " + this.rectangle.getRow() + " COL " + this.rectangle.getCol());
-
-
-        // pane.add(new ExplosionImageView(), 
-        //     this.rectangle.getCol(), 
-        //     this.rectangle.getRow(), 
-        //     1, 
-        //     1);
     }
 
     public void HandleMouseButtonSecondary(double sceneX, double sceneY) {
@@ -155,14 +145,14 @@ public class ShipImageView extends ImageView {
         if (orientation == Orientation.HORIZONTAL) {
             orientation = Orientation.VERTICAL;
             setImage(this.vertImage);
-            setFitHeight(SIZE * cells);
-            setFitWidth(SIZE);
+            setFitHeight(Constants.SIZE * cells);
+            setFitWidth(Constants.SIZE);
         }
         else {
             orientation = Orientation.HORIZONTAL;
             setImage(this.horizImage);
-            setFitHeight(SIZE);
-            setFitWidth(SIZE * cells);
+            setFitHeight(Constants.SIZE);
+            setFitWidth(Constants.SIZE * cells);
         }
 
         // update the position based on where the mouse was clicked
