@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.Arrays;
 
 import org.robodad.battleship.controller.GameRules;
 import org.robodad.battleship.model.Player;
@@ -75,10 +76,11 @@ public class App extends Application {
 
             URL loadPath = file.toURI().toURL();
             URL[] classUrl = new URL[]{loadPath};
-            
+
             URLClassLoader cl = new URLClassLoader(classUrl);
-            
-            Class<?> loadedClass = cl.loadClass("plugins.Random"); // TODO - fix name
+
+            String className = file.getName().replaceFirst("[.][^.]+$", "");
+            Class<?> loadedClass = cl.loadClass("plugins." + className);
 
             strategy = (Strategy)loadedClass.getDeclaredConstructor().newInstance();
 
