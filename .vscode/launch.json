@@ -14,14 +14,14 @@
             "type": "java",
             "name": "Launch App",
             "request": "launch",
-            "mainClass": "src.main.java.org.robodad.battleship.App",
+            "mainClass": "src.main.java.battleship.App",
             "projectName": "Battleship_5b27732f"
         },
         {
             "type": "java",
             "name": "Launch App(1)",
             "request": "launch",
-            "mainClass": "battleship/org.robodad.battleship.App",
+            "mainClass": "battleship/battleship.App",
             "projectName": "battleship"
         }
     ]

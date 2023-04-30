@@ -40,7 +40,7 @@
                     <release>${maven.compiler.release}</release>
                     <jlinkImageName>battleship</jlinkImageName>
                     <launcher>launcher</launcher>
-                    <mainClass>battleship/org.robodad.battleship.App</mainClass>
+                    <mainClass>battleship/battleship.App</mainClass>
                 </configuration>
             </plugin>
         </plugins>
