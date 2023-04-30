@@ -1,6 +1,5 @@
 package battleship.model;
 
-
 public class Constants {
 
     public static double SIZE = 50;
@@ -21,4 +20,11 @@ public class Constants {
         HIT,
         SUNK
     }
+
+    public enum Orientation {
+        UNKNOWN,
+        HORIZONTAL, 
+        VERTICAL
+    };
+
 }
