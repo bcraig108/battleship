@@ -27,6 +27,8 @@ public class GameRules {
     /** The alert box, indicating who wins */
     private Alert alert;
 
+    private int turnCount;
+
     /**
      * The constructor
      * @param player1 - Player 1
@@ -36,6 +38,7 @@ public class GameRules {
         this.player1 = player1;
         this.player2 = player2;
         this.nextPlayer = player1;
+        this.turnCount = 1;
     }
 
     /**
@@ -104,6 +107,7 @@ public class GameRules {
         }
         else {
             nextPlayer = player1;
+            turnCount++;
         }
     }
 
@@ -117,7 +121,7 @@ public class GameRules {
                 alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Game Over");
                 alert.setHeaderText(null);
-                alert.setContentText(nextPlayer.getName() + " Wins!");
+                alert.setContentText(nextPlayer.getName() + " wins in " + turnCount + " turns!");
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
